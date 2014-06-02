@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="jncryptor-1.0.1">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/oc/libs/jncryptor-1.0.1.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

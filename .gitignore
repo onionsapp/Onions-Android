@@ -1,0 +1,10 @@
+.gradle
+/local.properties
+/.idea/workspace.xml
+.DS_Store
+
+#Android Gears
+Gears/
+
+#Parse Constants
+**/ParseConstants.java
