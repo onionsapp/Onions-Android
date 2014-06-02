@@ -24,7 +24,10 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_above="@+id/logoutButton"
-        android:layout_marginBottom="20dp" />
+        android:layout_marginBottom="20dp"
+        android:divider="#ffd1d1d1"
+        android:dividerHeight="1dp"
+        android:clickable="false" />
 
     <Button
         android:layout_width="wrap_content"

@@ -4,5 +4,6 @@
     <string name="app_name">Onions-Android</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="register">Your privacy is very important to us. In fact, it\'s our biggest priority. Your credentials are never shared with anyone and they\'re hashed before they ever hit the server. We recommend creating a strong username and password that are different than any other accounts you use online.</string>
 
 </resources>

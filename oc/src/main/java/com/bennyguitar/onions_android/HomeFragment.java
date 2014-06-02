@@ -44,6 +44,7 @@ public class HomeFragment extends OnionFragment {
     // Button Events
     View.OnClickListener didClickNewAccount = new View.OnClickListener() {
         public void onClick(View v) {
+            navigateToNewAccount();
         }
     };
 
@@ -94,6 +95,14 @@ public class HomeFragment extends OnionFragment {
         fragmentManager.beginTransaction().replace(getId(), showOnionsFragment).addToBackStack("Home").commit();
     }
 
+    private void navigateToNewAccount() {
+        usernameTextField.setText("");
+        passwordTextField.setText("");
+        RegisterFragment registerFragment = new RegisterFragment();
+        FragmentManager fragmentManager = getActivity().getFragmentManager();
+        fragmentManager.beginTransaction().replace(getId(), registerFragment).addToBackStack("Home").commit();
+    }
+
     // UI
     public void buildUI(View V) {
         // Login Button
@@ -112,6 +121,7 @@ public class HomeFragment extends OnionFragment {
 
         // TextFields
         usernameTextField = (EditText)V.findViewById(R.id.usernameTextField);
+        usernameTextField.setBackgroundResource(R.drawable.under_border);
         passwordTextField = (EditText)V.findViewById(R.id.passwordTextField);
     }
 

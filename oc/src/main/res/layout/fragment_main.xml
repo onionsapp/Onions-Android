@@ -61,7 +61,8 @@
         android:textColor="#404040"
         android:layout_below="@+id/usernameTextField"
         android:layout_alignParentRight="true"
-        android:hint="Password" />
+        android:hint="Password"
+        android:gravity="center" />
 
     <EditText
         android:layout_width="fill_parent"
@@ -76,5 +77,7 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:layout_marginTop="40dp"
-        android:hint="Username" />
+        android:hint="Username"
+        android:singleLine="false"
+        android:gravity="center" />
 </RelativeLayout>

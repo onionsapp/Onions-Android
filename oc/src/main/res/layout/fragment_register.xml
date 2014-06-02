@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:padding="@dimen/activity_vertical_margin">
+
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/editTextUsername"
+        android:background="@color/white"
+        android:height="50dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:textColor="#404040"
+        android:hint="Username"
+        android:singleLine="false"
+        android:gravity="center"
+        android:layout_below="@+id/imageView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="40dp" />
+
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/editTextPassword"
+        android:background="@color/white"
+        android:height="50dp"
+        android:password="true"
+        android:singleLine="false"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:textColor="#404040"
+        android:hint="Password"
+        android:gravity="center"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/editTextUsername"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="0dp" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView"
+        android:src="@drawable/logo"
+        android:scaleType="fitCenter"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="20dp" />
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Register"
+        android:id="@+id/buttonRegister"
+        android:layout_below="@+id/editTextPassword"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="20dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView"
+        android:layout_below="@+id/buttonRegister"
+        android:layout_alignLeft="@+id/buttonRegister"
+        android:layout_alignStart="@+id/buttonRegister"
+        android:layout_alignRight="@+id/buttonRegister"
+        android:layout_alignEnd="@+id/buttonRegister"
+        android:layout_marginTop="20dp"
+        android:text="@string/register"
+        android:textColor="@color/white"
+        android:gravity="center" />
+</RelativeLayout>

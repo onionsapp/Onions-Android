@@ -2,6 +2,9 @@ package com.bennyguitar.onions_android;
 
 import android.database.DataSetObserver;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.ShapeDrawable;
+import android.graphics.drawable.shapes.RectShape;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
