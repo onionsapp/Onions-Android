@@ -109,6 +109,7 @@ public class OCSession {
         // Load the objects
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Onion");
         query.whereEqualTo("userId", UserId);
+        query.orderByAscending("createdAt");
         query.findInBackground(new FindCallback<ParseObject>() {
             public void done(List<ParseObject> onionList, ParseException e) {
                 Message msg = new Message();

@@ -26,7 +26,6 @@ public class ShowOnionsFragment extends OnionFragment {
     Button logoutButton;
     Button createButton;
     ListView onionsListView;
-    ListAdapter onionsListAdapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -35,6 +34,9 @@ public class ShowOnionsFragment extends OnionFragment {
 
         // Build UI
         buildUI(V);
+
+        // Set Adapter
+        setOnionsAdapter();
 
         // Load Onions
         loadOnions();
@@ -63,8 +65,6 @@ public class ShowOnionsFragment extends OnionFragment {
         onionsListView = (ListView)V.findViewById(R.id.onionsListView);
         onionsListView.setBackgroundColor(Color.WHITE);
         onionsListView.setOnItemClickListener(selectOnionListener);
-        //onionsListAdapter = OnionsListAdapter.listAdapterWithOnions(OCSession.mainSession.Onions);
-        //onionsListView.setAdapter(onionsListAdapter);
     }
 
     // Load Onions
@@ -72,10 +72,9 @@ public class ShowOnionsFragment extends OnionFragment {
         @Override
         public boolean handleMessage(Message message) {
             boolean didLoadOnions = message.arg1 != 0;
-            usernameTextView.setText(didLoadOnions ? "Success!" : "Failure!");
-            ArrayAdapter<Onion> adapter = new ArrayAdapter<Onion>(getActivity(), R.layout.cell_onion, OCSession.mainSession.Onions);
-            onionsListView.setAdapter(adapter);
-            decryptOnions();
+            if (didLoadOnions) {
+                decryptOnions();
+            }
             return true;
         }
     };
@@ -89,6 +88,9 @@ public class ShowOnionsFragment extends OnionFragment {
         @Override
         public boolean handleMessage(Message message) {
             boolean didDecryptOnions = message.arg1 != 0;
+            if (didDecryptOnions) {
+                setOnionsAdapter();
+            }
             return true;
         }
     };
@@ -118,20 +120,16 @@ public class ShowOnionsFragment extends OnionFragment {
         @Override
         public void onItemClick(AdapterView<?> parent, View view,
         int position, long id) {
-
+            if (OCSession.mainSession.Onions != null) {
+                // Go to OnionDetail fragment
+                Onion onion = (OCSession.mainSession.Onions.size() == 0) ? null : (Onion)OCSession.mainSession.Onions.get(position);
+            }
         }
     };
 
-    public View getView(int i, View view, ViewGroup viewGroup) {
-        // Set Up
-        View cell = View.inflate(null, R.layout.cell_onion, viewGroup);
-        TextView titleView = (TextView)cell.findViewById(R.id.titleTextView);
-        Onion onion = (Onion)OCSession.mainSession.Onions.get(i);
-
-        // Set Text
-        titleView.setText(onion.getString("onionTitle"));
-
-        // Return it
-        return cell;
+    public void setOnionsAdapter() {
+        OnionsListAdapter adapter = new OnionsListAdapter(getActivity(), R.layout.cell_onion, OCSession.mainSession.Onions);
+        onionsListView.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
     }
 }
