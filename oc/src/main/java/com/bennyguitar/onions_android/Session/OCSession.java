@@ -64,7 +64,7 @@ public class OCSession {
             protected Object doInBackground(Object[] objects) {
                 final ParseUser user = new ParseUser();
                 user.setUsername(OCSecurity.stretchedSha256String(username, OCSecurity.defaultShaIterations));
-                user.setPassword(OCSecurity.stretchedSha256String(pass, OCSecurity.defaultShaIterations));
+                user.setPassword(OCSecurity.stretchedSha256String(pass + username, OCSecurity.defaultShaIterations));
                 user.signUpInBackground(new SignUpCallback() {
                     public void done(ParseException e) {
                         if (e == null) {
@@ -73,7 +73,8 @@ public class OCSession {
                             Username = username;
                             UserId = user.getObjectId();
                             Password = pass;
-
+                            user.put("Pro", true);
+                            user.saveInBackground();
                         } else {
                             // Sign up didn't succeed. Look at the ParseException
                             // to figure out what went wrong

@@ -5,5 +5,14 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="register">Your privacy is very important to us. In fact, it\'s our biggest priority. Your credentials are never shared with anyone and they\'re hashed before they ever hit the server. We recommend creating a strong username and password that are different than any other accounts you use online.</string>
+    <string name="about_h_1">What is Onions?</string>
+    <string name="about_h_2">Secure?</string>
+    <string name="about_h_3">Open Source?</string>
+    <string name="about_h_4">But why free?</string>
+    <string name="about_h_5">Thanks for using Onions!</string>
+    <string name="about_b_1">Onions is a way to keep track of any text-based information in an ultra-secure fashion. Things like passwords, debit card information, or social security numbers lend themselves perfectly for Onions. Onions isn\'t a closed-box - it\'s open source. This means you can pore over the code and see just how secure it is as well.</string>
+    <string name="about_b_2">Onions uses a couple different methods to keep your data secure. From the server, your password is encrypted using BCrypt (http://en.wikipedia.org/wiki/Bcrypt), and your plaintext username is never stored, period. Both your username and password are SHA-256 hashed recursively for 15,000 rounds before being sent to the server for authentication. On the phone, AES-CBC-256 (with HMAC) encryption is employed to turn your various onions into gobbledy-gook before they\'re sent to the server over an SSL connection.</string>
+    <string name="about_b_3">There\'s only one real way to trust that everything is as secure as we say it is - and that\'s not by keeping us to our word. You can read the code to see how the app handles encryption and web service calls. Because it is open source, we would love feedback from the community - especially on methods to increase security and improve functionality. Don\'t be afraid to open a pull request!\n\nhttps://github.com/onionsapp/Onions-Android</string>
+    <string name="about_b_4">Private information storage in the cloud should be free. With this in mind, we are offering 10 Onions with each free account. However, if you\'d like more or want to help support the cause, you can purchase the Pro upgrade for a lifetime charge of $9.99 per account. This allows an unlimited amount of Onions to be stored, and any other future features we add.</string>
 
 </resources>

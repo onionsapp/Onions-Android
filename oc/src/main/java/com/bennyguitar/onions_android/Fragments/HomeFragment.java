@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -52,9 +53,7 @@ public class HomeFragment extends OnionFragment {
 
     View.OnClickListener didClickAboutUs = new View.OnClickListener() {
         public void onClick(View v) {
-            if (OCSession.mainSession.Username != null) {
-                Log.d("OC", OCSession.mainSession.Username);
-            }
+            navigateToAboutUs();
         }
     };
 
@@ -90,19 +89,22 @@ public class HomeFragment extends OnionFragment {
     };
 
     private void navigateToShowOnions() {
-        usernameTextField.setText("");
-        passwordTextField.setText("");
-        ShowOnionsFragment showOnionsFragment = new ShowOnionsFragment();
-        MainActivity activity = (MainActivity)getActivity();
-        activity.animateToFragment(showOnionsFragment, "ShowOnions");
+        navigateToFragment(new ShowOnionsFragment(), "ShowOnions");
     }
 
     private void navigateToNewAccount() {
+        navigateToFragment(new RegisterFragment(), "NewAccount");
+    }
+
+    private void navigateToAboutUs() {
+        navigateToFragment(new AboutFragment(), "AboutOnions");
+    }
+
+    private void navigateToFragment(Fragment fragment, String tag) {
         usernameTextField.setText("");
         passwordTextField.setText("");
-        RegisterFragment registerFragment = new RegisterFragment();
         MainActivity activity = (MainActivity)getActivity();
-        activity.animateToFragment(registerFragment, "NewAccount");
+        activity.animateToFragment(fragment, tag);
     }
 
     // UI
