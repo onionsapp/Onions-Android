@@ -112,7 +112,8 @@ public class ShowOnionsFragment extends OnionFragment {
         @Override
         public void onClick(View view) {
             // Pop back to Root, clear session
-            getActivity().getFragmentManager().popBackStack();
+            MainActivity activity = (MainActivity)getActivity();
+            activity.goBack();
         }
     };
 

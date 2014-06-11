@@ -76,7 +76,6 @@ public class OCSecurity {
         }
 
         // Return it
-        Log.d("Decrypted", decryptedText);
         return decryptedText;
     }
 
