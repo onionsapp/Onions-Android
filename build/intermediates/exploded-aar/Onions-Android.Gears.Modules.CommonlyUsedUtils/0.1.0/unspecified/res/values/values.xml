@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- From: file:/Users/BenG/Desktop/Github/Onions-Android/Gears/Modules/CommonlyUsedUtils/0.1.0/src/main/res/values/attrs.xml -->
+    <eat-comment />
+
+    <declare-styleable name="KustomTextView">
+        <attr name="font" format="string" />
+    </declare-styleable>
+    <!-- From: file:/Users/BenG/Desktop/Github/Onions-Android/Gears/Modules/CommonlyUsedUtils/0.1.0/src/main/res/values/strings.xml -->
+    <eat-comment />
+
+    <string name="app_name">DriveSober</string>
+
+</resources>

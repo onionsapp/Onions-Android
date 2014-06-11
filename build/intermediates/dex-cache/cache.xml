@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<pre-dex-items>
+
+    <item
+        dex="/Users/BenG/Desktop/Github/Onions-Android/oc/build/intermediates/pre-dexed/debug/bcprov-jdk15on-150-16a6e33e8fb2c65161cd7ee7c35075fc10f38f65.jar"
+        jar="/Users/BenG/Desktop/Github/Onions-Android/oc/libs/bcprov-jdk15on-150.jar"
+        jumboMode="false"
+        revision="19.1.0"
+        sha1="be504b4901d75cbe129a178f5830e6c358ec214c"/>
+    <item
+        dex="/Users/BenG/Desktop/Github/Onions-Android/oc/build/intermediates/pre-dexed/debug/Parse-1.5.0-773c23fafbb327ad228ba93c7e34965633534d22.jar"
+        jar="/Users/BenG/Desktop/Github/Onions-Android/oc/libs/Parse-1.5.0.jar"
+        jumboMode="false"
+        revision="19.1.0"
+        sha1="8a675f7e3312d8b28188ec653bbea6d435aaa7d1"/>
+    <item
+        dex="/Users/BenG/Desktop/Github/Onions-Android/oc/build/intermediates/pre-dexed/debug/classes-9db0968a118b30ffc9565afe26a70f97290e0a27.jar"
+        jar="/Users/BenG/Desktop/Github/Onions-Android/build/intermediates/exploded-aar/com.android.support/appcompat-v7/19.1.0/classes.jar"
+        jumboMode="false"
+        revision="19.1.0"
+        sha1="3499ceba05ca1f6037c6a2fad73df8f636224a28"/>
+    <item
+        dex="/Users/BenG/Desktop/Github/Onions-Android/oc/build/intermediates/pre-dexed/debug/android-support-v4-64c0d58dba593e5261b51d69f0d7294c2486c8b4.jar"
+        jar="/Users/BenG/Desktop/Github/Onions-Android/Gears/Jars/AndroidSupportLibrary-v4/19.1.0/android-support-v4.jar"
+        jumboMode="false"
+        revision="19.1.0"
+        sha1="ded9acc6a9792b8f1afc470f0c9cd36d178914cd"/>
+    <item
+        dex="/Users/BenG/Desktop/Github/Onions-Android/oc/build/intermediates/pre-dexed/debug/support-v4-19.1.0-fe930dc68beb1e566675ce71b270d4091c6c249b.jar"
+        jar="/Applications/Android Studio.app/sdk/extras/android/m2repository/com/android/support/support-v4/19.1.0/support-v4-19.1.0.jar"
+        jumboMode="false"
+        revision="19.1.0"
+        sha1="85f201b380937e61a9dce6ca90ccf6872abbfb67"/>
+    <item
+        dex="/Users/BenG/Desktop/Github/Onions-Android/oc/build/intermediates/pre-dexed/debug/gson-2.2.4-45280178a4935b7e4b255029afb86667e7385090.jar"
+        jar="/Users/BenG/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.2.4/a60a5e993c98c864010053cb901b7eab25306568/gson-2.2.4.jar"
+        jumboMode="false"
+        revision="19.1.0"
+        sha1="a60a5e993c98c864010053cb901b7eab25306568"/>
+    <item
+        dex="/Users/BenG/Desktop/Github/Onions-Android/oc/build/intermediates/pre-dexed/debug/joda-time-2.3-584820e714b8cb3f6265c7920ecd73ea4a51c7d7.jar"
+        jar="/Users/BenG/.gradle/caches/modules-2/files-2.1/joda-time/joda-time/2.3/56498efd17752898cfcc3868c1b6211a07b12b8f/joda-time-2.3.jar"
+        jumboMode="false"
+        revision="19.1.0"
+        sha1="56498efd17752898cfcc3868c1b6211a07b12b8f"/>
+    <item
+        dex="/Users/BenG/Desktop/Github/Onions-Android/oc/build/intermediates/pre-dexed/debug/classes-e5b00cd2c908b9d236fbf62fa9187a26eaf5fc96.jar"
+        jar="/Users/BenG/Desktop/Github/Onions-Android/build/intermediates/exploded-aar/Onions-Android.Gears.Modules.CommonlyUsedUtils/0.1.0/unspecified/classes.jar"
+        jumboMode="false"
+        revision="19.1.0"
+        sha1="2251ad9d17f632dc688bf86899cebe08ba27f5f7"/>
+    <item
+        dex="/Users/BenG/Desktop/Github/Onions-Android/oc/build/intermediates/pre-dexed/debug/core-1.50.0.0-3a3172903d8f60cc5f1ec05ff045947c6681d87f.jar"
+        jar="/Users/BenG/Desktop/Github/Onions-Android/oc/libs/core-1.50.0.0.jar"
+        jumboMode="false"
+        revision="19.1.0"
+        sha1="13e93b00ec9790315debd61fa25ab6a47d3a1c52"/>
+    <item
+        dex="/Users/BenG/Desktop/Github/Onions-Android/oc/build/intermediates/pre-dexed/debug/classes-9283af1395d817c7725d927fe18489798cf09fcd.jar"
+        jar="/Users/BenG/Desktop/Github/Onions-Android/build/intermediates/exploded-aar/Onions-Android.Gears.Modules.Colours/1.0.1/unspecified/classes.jar"
+        jumboMode="false"
+        revision="19.1.0"
+        sha1="59230fbf3a5e68d6e253b7ecd6e0b3fa5bda01ce"/>
+    <item
+        dex="/Users/BenG/Desktop/Github/Onions-Android/oc/build/intermediates/pre-dexed/debug/jncryptor-1.0.1-e60606ed2511e7210e5bd77ee4d06cf61b32617e.jar"
+        jar="/Users/BenG/Desktop/Github/Onions-Android/oc/libs/jncryptor-1.0.1.jar"
+        jumboMode="false"
+        revision="19.1.0"
+        sha1="04da345b4b1955480afba09e31e6c56cea3e6cd3"/>
+
+</pre-dex-items>

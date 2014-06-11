@@ -1,28 +1,28 @@
 package com.bennyguitar.onions_android;
 
-import android.app.Activity;
-import android.app.ActionBar;
-import android.app.Fragment;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.LayoutInflater;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.os.Build;
-import android.widget.Button;
+
+import com.bennyguitar.onions_android.Fragments.HomeFragment;
+import com.bennyguitar.onions_android.Session.OCSession;
+
+import edu.ua.caps.commonlyusedutils.commonlyusedutilslib.CommonlyUsedUtils;
 
 
-public class MainActivity extends Activity {
+public class MainActivity extends FragmentActivity {
+    public CommonlyUsedUtils commonlyUsedUtils;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        commonlyUsedUtils = new CommonlyUsedUtils(this);
         getActionBar().hide();
         setContentView(R.layout.activity_main);
         if (savedInstanceState == null) {
-            getFragmentManager().beginTransaction()
+            getSupportFragmentManager().beginTransaction()
                     .add(R.id.container, new HomeFragment())
                     .commit();
         }
@@ -31,6 +31,13 @@ public class MainActivity extends Activity {
         OCSession.setUp(this);
     }
 
+    @Override
+    public void onStop(){
+        // KILL THE SESSION
+        OCSession.mainSession.logout();
+        super.onStop();
+        finish();
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -49,5 +56,17 @@ public class MainActivity extends Activity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+
+    // Animate Fragment Change
+    public void animateToFragment(android.support.v4.app.Fragment fragment, String tag) {
+        if (fragment != null) {
+            commonlyUsedUtils.switchFragmentsWithStyle(R.id.container, fragment, tag);
+        }
+    }
+
+    public void goBack() {
+        getSupportFragmentManager().popBackStack();
     }
 }

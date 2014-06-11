@@ -12,6 +12,8 @@
             <option value="$PROJECT_DIR$/Gears/Modules" />
             <option value="$PROJECT_DIR$/Gears/Modules/Colours" />
             <option value="$PROJECT_DIR$/Gears/Modules/Colours/1.0.1" />
+            <option value="$PROJECT_DIR$/Gears/Modules/CommonlyUsedUtils" />
+            <option value="$PROJECT_DIR$/Gears/Modules/CommonlyUsedUtils/0.1.0" />
             <option value="$PROJECT_DIR$/oc" />
           </set>
         </option>
