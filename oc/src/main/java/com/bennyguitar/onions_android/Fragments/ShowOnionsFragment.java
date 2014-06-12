@@ -1,5 +1,6 @@
 package com.bennyguitar.onions_android.Fragments;
 
+import android.animation.ObjectAnimator;
 import android.app.FragmentManager;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -57,22 +58,35 @@ public class ShowOnionsFragment extends OnionFragment {
             usernameTextView.setText(OCSession.mainSession.Username);
         }
 
+        // List View
+        onionsListView = (ListView)V.findViewById(R.id.onionsListView);
+        onionsListView.setBackgroundColor(Color.WHITE);
+        onionsListView.setOnItemClickListener(selectOnionListener);
+
         // Buttons
         logoutButton = (Button)V.findViewById(R.id.logoutButton);
         createButton = (Button)V.findViewById(R.id.createOnionButton);
         logoutButton.setOnClickListener(didClickLogout);
         createButton.setOnClickListener(didClickCreate);
-        setButtonsEnabled(false);
-
-        // List View
-        onionsListView = (ListView)V.findViewById(R.id.onionsListView);
-        onionsListView.setBackgroundColor(Color.WHITE);
-        onionsListView.setOnItemClickListener(selectOnionListener);
+        setUIEnabled(false);
     }
 
-    private void setButtonsEnabled(boolean enabled) {
+    private void setUIEnabled(boolean enabled) {
+        onionsListView.setAlpha(enabled ? 1.0f : 0.5f);
         UIHelpers.styleOnionButton(logoutButton, enabled);
         UIHelpers.styleOnionButton(createButton, enabled);
+    }
+
+    private void createList() {
+        setOnionsAdapter();
+        setUIEnabled(true);
+    }
+
+    private void animateList() {
+        ObjectAnimator animator = new ObjectAnimator();
+        animator.ofFloat(onionsListView, "alpha", 1f);
+        animator.setDuration(200);
+        animator.start();
     }
 
     // Load Onions
@@ -89,7 +103,7 @@ public class ShowOnionsFragment extends OnionFragment {
 
     private void loadOnions() {
         if (OCSession.mainSession.Onions != null) {
-            setOnionsAdapter();
+            createList();
         }
         else {
             OCSession.mainSession.loadOnionsFromParse(loadOnionsCallback);
@@ -102,9 +116,9 @@ public class ShowOnionsFragment extends OnionFragment {
         public boolean handleMessage(Message message) {
             boolean didDecryptOnions = message.arg1 != 0;
             if (didDecryptOnions) {
-                setOnionsAdapter();
-                setButtonsEnabled(true);
+                createList();
             }
+
             return true;
         }
     };
