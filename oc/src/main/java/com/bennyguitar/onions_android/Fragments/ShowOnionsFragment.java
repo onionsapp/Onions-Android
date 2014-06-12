@@ -1,5 +1,6 @@
 package com.bennyguitar.onions_android.Fragments;
 
+import android.accounts.Account;
 import android.animation.ObjectAnimator;
 import android.app.FragmentManager;
 import android.graphics.Color;
@@ -57,6 +58,7 @@ public class ShowOnionsFragment extends OnionFragment {
         if (usernameTextView != null) {
             usernameTextView.setText(OCSession.mainSession.Username);
         }
+        usernameTextView.setOnClickListener(didClickAccount);
 
         // List View
         onionsListView = (ListView)V.findViewById(R.id.onionsListView);
@@ -141,6 +143,15 @@ public class ShowOnionsFragment extends OnionFragment {
         @Override
         public void onClick(View view) {
             launchToOnionDetail(null);
+        }
+    };
+
+    View.OnClickListener didClickAccount = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            AccountInfoFragment fragment = new AccountInfoFragment();
+            MainActivity activity = (MainActivity)getActivity();
+            activity.animateToFragment(fragment, "AccountInfo");
         }
     };
 

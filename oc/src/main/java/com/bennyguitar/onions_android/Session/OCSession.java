@@ -11,6 +11,7 @@ import com.parse.FindCallback;
 import com.parse.LogInCallback;
 import com.parse.Parse;
 import com.parse.ParseException;
+import com.parse.ParseFacebookUtils;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
@@ -27,6 +28,7 @@ public class OCSession {
     public String Password;
     public String UserId;
     public String Username;
+    public ParseUser User;
 
     // Singleton Instance
     public static OCSession mainSession;
@@ -65,6 +67,7 @@ public class OCSession {
                 final ParseUser user = new ParseUser();
                 user.setUsername(OCSecurity.stretchedSha256String(username, OCSecurity.defaultShaIterations));
                 user.setPassword(OCSecurity.stretchedSha256String(pass + username, OCSecurity.defaultShaIterations));
+                user.put("Pro", true);
                 user.signUpInBackground(new SignUpCallback() {
                     public void done(ParseException e) {
                         if (e == null) {
@@ -73,8 +76,7 @@ public class OCSession {
                             Username = username;
                             UserId = user.getObjectId();
                             Password = pass;
-                            user.put("Pro", true);
-                            user.saveInBackground();
+                            User = user;
                         } else {
                             // Sign up didn't succeed. Look at the ParseException
                             // to figure out what went wrong
@@ -118,6 +120,7 @@ public class OCSession {
                             UserId = user.getObjectId();
                             Password = p;
                             success = 1;
+                            User = user;
                         }
 
                         onPostExecute();
