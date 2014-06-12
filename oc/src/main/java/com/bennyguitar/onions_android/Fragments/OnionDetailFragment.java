@@ -2,6 +2,8 @@ package com.bennyguitar.onions_android.Fragments;
 
 import android.app.Fragment;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,11 +11,13 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bennyguitar.onions_android.MainActivity;
 import com.bennyguitar.onions_android.Objects.Onion;
 import com.bennyguitar.onions_android.R;
 import com.bennyguitar.onions_android.Session.OCSession;
+import com.bennyguitar.onions_android.Utilities.OnionDialog;
 import com.bennyguitar.onions_android.Utilities.UIHelpers;
 import com.parse.ParseException;
 import com.parse.SaveCallback;
@@ -74,6 +78,13 @@ public class OnionDetailFragment extends OnionFragment {
         }
     }
 
+    private void setUIForSaving(boolean saving) {
+        saveButton.setEnabled(!saving);
+        saveButton.setAlpha(saving ? 0.25f : 1.0f);
+        deleteButton.setEnabled(!saving);
+        deleteButton.setAlpha(saving ? 0.25f : 1.0f);
+    }
+
 
     // Button Listeners
     private View.OnClickListener didClickDelete = new View.OnClickListener() {
@@ -86,6 +97,7 @@ public class OnionDetailFragment extends OnionFragment {
     private View.OnClickListener didClickSave = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
+            setUIForSaving(true);
             if (currentOnion == null) {
                 currentOnion = Onion.newOnion(onionTitleTextField.getText().toString(), onionInfoTextField.getText().toString());
                 OCSession.mainSession.Onions.add(currentOnion);
@@ -109,9 +121,17 @@ public class OnionDetailFragment extends OnionFragment {
                 // Success
                 Log.d("Save", "Success");
 
+                // Show Toast
+                OnionDialog.show(getActivity(), "Success!", OnionDialog.OnionDialogType.SUCCESS, Toast.LENGTH_SHORT);
+
                 // Go Back
                 MainActivity activity = (MainActivity)getActivity();
                 activity.goBack();
+            }
+            else {
+                // Show Toast
+                setUIForSaving(false);
+                OnionDialog.show(getActivity(), "Failed to Save!", OnionDialog.OnionDialogType.FAILURE, Toast.LENGTH_SHORT);
             }
         }
     };

@@ -18,6 +18,7 @@ import com.bennyguitar.onions_android.Session.OCSession;
 import com.bennyguitar.onions_android.Objects.Onion;
 import com.bennyguitar.onions_android.Adapters.OnionsListAdapter;
 import com.bennyguitar.onions_android.R;
+import com.bennyguitar.onions_android.Utilities.UIHelpers;
 
 
 /**
@@ -61,13 +62,17 @@ public class ShowOnionsFragment extends OnionFragment {
         createButton = (Button)V.findViewById(R.id.createOnionButton);
         logoutButton.setOnClickListener(didClickLogout);
         createButton.setOnClickListener(didClickCreate);
-        Button[] buttons = {logoutButton, createButton};
-        buildButtonUI(buttons);
+        setButtonsEnabled(false);
 
         // List View
         onionsListView = (ListView)V.findViewById(R.id.onionsListView);
         onionsListView.setBackgroundColor(Color.WHITE);
         onionsListView.setOnItemClickListener(selectOnionListener);
+    }
+
+    private void setButtonsEnabled(boolean enabled) {
+        UIHelpers.styleOnionButton(logoutButton, enabled);
+        UIHelpers.styleOnionButton(createButton, enabled);
     }
 
     // Load Onions
@@ -98,6 +103,7 @@ public class ShowOnionsFragment extends OnionFragment {
             boolean didDecryptOnions = message.arg1 != 0;
             if (didDecryptOnions) {
                 setOnionsAdapter();
+                setButtonsEnabled(true);
             }
             return true;
         }

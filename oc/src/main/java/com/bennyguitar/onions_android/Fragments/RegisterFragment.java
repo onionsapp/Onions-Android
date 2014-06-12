@@ -13,6 +13,7 @@ import android.widget.EditText;
 import com.bennyguitar.onions_android.MainActivity;
 import com.bennyguitar.onions_android.Session.OCSession;
 import com.bennyguitar.onions_android.R;
+import com.bennyguitar.onions_android.Utilities.OnionDialog;
 import com.bennyguitar.onions_android.Utilities.UIHelpers;
 
 /**
@@ -72,7 +73,11 @@ public class RegisterFragment extends OnionFragment {
             boolean didRegister = message.arg1 != 0;
             if (didRegister) {
                 navigateToShowOnions();
+                return true;
             }
+
+            // Launch Toast
+            OnionDialog.show(getActivity(), "This username already exists. Choose another.", OnionDialog.OnionDialogType.FAILURE, 500);
 
             // Reset UI
             setUIForRegister(false);

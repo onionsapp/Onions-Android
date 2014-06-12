@@ -118,8 +118,9 @@ public class OCSession {
                             UserId = user.getObjectId();
                             Password = p;
                             success = 1;
-                            onPostExecute();
                         }
+
+                        onPostExecute();
                     }
                 });
 

@@ -12,10 +12,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.bennyguitar.onions_android.MainActivity;
 import com.bennyguitar.onions_android.Session.OCSession;
 import com.bennyguitar.onions_android.R;
+import com.bennyguitar.onions_android.Utilities.OnionDialog;
 import com.bennyguitar.onions_android.Utilities.UIHelpers;
 
 /**
@@ -78,10 +80,14 @@ public class HomeFragment extends OnionFragment {
             Log.d("OC", "Message Received");
             if (didLogin) {
                 navigateToShowOnions();
+                return true;
             }
 
             // Reset UI
             setUIForLogin(false);
+
+            // Show Toast
+            OnionDialog.show(getActivity(), "Account/Password mismatch.\nTry again.", OnionDialog.OnionDialogType.FAILURE, Toast.LENGTH_SHORT);
 
             // We're done here.
             return true;
