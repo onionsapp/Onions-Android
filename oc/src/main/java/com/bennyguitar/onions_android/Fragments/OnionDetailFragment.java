@@ -1,9 +1,9 @@
 package com.bennyguitar.onions_android.Fragments;
 
-import android.app.Fragment;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Message;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +19,7 @@ import com.bennyguitar.onions_android.R;
 import com.bennyguitar.onions_android.Session.OCSession;
 import com.bennyguitar.onions_android.Utilities.OnionDialog;
 import com.bennyguitar.onions_android.Utilities.UIHelpers;
+import com.parse.DeleteCallback;
 import com.parse.ParseException;
 import com.parse.SaveCallback;
 
@@ -62,6 +63,7 @@ public class OnionDetailFragment extends OnionFragment {
         UIHelpers.styleClearButton(deleteButton, UIHelpers.lightPurpleColor());
         UIHelpers.styleClearButton(saveButton, UIHelpers.lightPurpleColor());
         deleteButton.setEnabled(currentOnion != null);
+        deleteButton.setAlpha(currentOnion != null ? 1.0f : 0.25f);
 
         // TextFields
         onionTitleTextField = (EditText)view.findViewById(R.id.onionTitleEditText);
@@ -78,11 +80,13 @@ public class OnionDetailFragment extends OnionFragment {
         }
     }
 
-    private void setUIForSaving(boolean saving) {
-        saveButton.setEnabled(!saving);
-        saveButton.setAlpha(saving ? 0.25f : 1.0f);
-        deleteButton.setEnabled(!saving);
-        deleteButton.setAlpha(saving ? 0.25f : 1.0f);
+    private void setUIForAction(boolean working) {
+        saveButton.setEnabled(!working);
+        saveButton.setAlpha(working ? 0.25f : 1.0f);
+        if (currentOnion != null) {
+            deleteButton.setEnabled(!working);
+            deleteButton.setAlpha(working ? 0.25f : 1.0f);
+        }
     }
 
 
@@ -90,14 +94,14 @@ public class OnionDetailFragment extends OnionFragment {
     private View.OnClickListener didClickDelete = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-
+            launchDeleteAlert();
         }
     };
 
     private View.OnClickListener didClickSave = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            setUIForSaving(true);
+            setUIForAction(true);
             if (currentOnion == null) {
                 currentOnion = Onion.newOnion(onionTitleTextField.getText().toString(), onionInfoTextField.getText().toString());
                 OCSession.mainSession.Onions.add(currentOnion);
@@ -118,21 +122,64 @@ public class OnionDetailFragment extends OnionFragment {
         @Override
         public void done(ParseException e) {
             if (e == null) {
-                // Success
-                Log.d("Save", "Success");
-
-                // Show Toast
-                OnionDialog.show(getActivity(), "Success!", OnionDialog.OnionDialogType.SUCCESS, Toast.LENGTH_SHORT);
-
-                // Go Back
-                MainActivity activity = (MainActivity)getActivity();
-                activity.goBack();
+                showSuccessAndGoBack();
             }
             else {
                 // Show Toast
-                setUIForSaving(false);
+                setUIForAction(false);
                 OnionDialog.show(getActivity(), "Failed to Save!", OnionDialog.OnionDialogType.FAILURE, Toast.LENGTH_SHORT);
             }
         }
     };
+
+
+    // Delete Alert
+    private void launchDeleteAlert() {
+        AlertDialog alert = new AlertDialog.Builder(getActivity(), AlertDialog.THEME_HOLO_DARK)
+                .setTitle("Delete Onion?!?")
+                .setMessage("This action is irreversible, and this Onion will be lost forever. Would you still like to delete it?")
+                .setPositiveButton("Delete", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        deleteOnion();
+                    }
+                })
+                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        // do nothing
+                    }
+                })
+                .show();
+    }
+
+    private void deleteOnion() {
+        if (currentOnion != null) {
+            setUIForAction(true);
+            currentOnion.deleteInBackground(deleteCallback);
+        }
+    }
+
+    private DeleteCallback deleteCallback = new DeleteCallback() {
+        @Override
+        public void done(ParseException e) {
+            if (e == null) {
+                OCSession.mainSession.Onions.remove(currentOnion);
+                showSuccessAndGoBack();
+            }
+            else {
+                setUIForAction(false);
+                OnionDialog.show(getActivity(), "Sorry, the Onion could not be deleted. Check your internet connection and try again.", OnionDialog.OnionDialogType.FAILURE, Toast.LENGTH_SHORT);
+            }
+        }
+    };
+
+
+    // Success & Go Back
+    private void showSuccessAndGoBack() {
+        // Show Toast
+        OnionDialog.show(getActivity(), "Success!", OnionDialog.OnionDialogType.SUCCESS, Toast.LENGTH_SHORT);
+
+        // Go Back
+        MainActivity activity = (MainActivity)getActivity();
+        activity.goBack();
+    }
 }
