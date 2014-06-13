@@ -4,6 +4,8 @@ import android.app.FragmentManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,6 +52,8 @@ public class RegisterFragment extends OnionFragment {
         usernameTextField = (EditText)view.findViewById(R.id.editTextUsername);
         usernameTextField.setBackgroundResource(R.drawable.under_border);
         passwordTextField = (EditText)view.findViewById(R.id.editTextPassword);
+        usernameTextField.addTextChangedListener(textWatcher);
+        passwordTextField.addTextChangedListener(textWatcher);
     }
 
     private void setUIForRegister(boolean isRegistering) {
@@ -101,4 +105,22 @@ public class RegisterFragment extends OnionFragment {
         MainActivity activity = (MainActivity)getActivity();
         activity.animateToFragment(showOnionsFragment, "ShowOnions");
     }
+
+    // Validation
+    private boolean registerFormIsValid() {
+        return usernameTextField.getText().length() > 0 && passwordTextField.getText().length() > 0;
+    }
+
+    TextWatcher textWatcher = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {}
+
+        @Override
+        public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+            setUIForRegister(!registerFormIsValid());
+        }
+
+        @Override
+        public void afterTextChanged(Editable editable) {}
+    };
 }

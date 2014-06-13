@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.Fragment;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -118,8 +120,7 @@ public class HomeFragment extends OnionFragment {
         // Login Button
         loginButton = (Button)V.findViewById(R.id.loginbutton);
         loginButton.setOnClickListener(didClickLogin);
-        Button[] buttons = {loginButton};
-        buildButtonUI(buttons);
+        UIHelpers.styleOnionButton(loginButton, false);
 
         // New Account/About Us Buttons
         newAccount = (Button)V.findViewById(R.id.newAccount);
@@ -133,9 +134,29 @@ public class HomeFragment extends OnionFragment {
         usernameTextField = (EditText)V.findViewById(R.id.usernameTextField);
         usernameTextField.setBackgroundResource(R.drawable.under_border);
         passwordTextField = (EditText)V.findViewById(R.id.passwordTextField);
+        usernameTextField.addTextChangedListener(textWatcher);
+        passwordTextField.addTextChangedListener(textWatcher);
     }
 
     public void setUIForLogin(boolean loggingIn) {
         UIHelpers.styleOnionButton(loginButton, !loggingIn);
     }
+
+    // Validation
+    private boolean loginFormIsValid() {
+        return usernameTextField.getText().length() > 0 && passwordTextField.getText().length() > 0;
+    }
+
+    TextWatcher textWatcher = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {}
+
+        @Override
+        public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+            setUIForLogin(!loginFormIsValid());
+        }
+
+        @Override
+        public void afterTextChanged(Editable editable) {}
+    };
 }
