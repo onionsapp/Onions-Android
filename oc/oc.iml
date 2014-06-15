@@ -68,7 +68,7 @@
     <orderEntry type="library" exported="" name="jncryptor-1.0.1" level="project" />
     <orderEntry type="library" exported="" name="bcprov-jdk15on-150" level="project" />
     <orderEntry type="library" exported="" name="joda-time-2.3" level="project" />
-    <orderEntry type="library" exported="" name="0.1.0" level="project" />
+    <orderEntry type="module" module-name="0.1.0" exported="" />
     <orderEntry type="module" module-name="1.0.1" exported="" />
   </component>
 </module>

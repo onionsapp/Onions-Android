@@ -204,5 +204,6 @@ public class OCSession {
         Password = null;
         UserId = null;
         Username = null;
+        User = null;
     }
 }
